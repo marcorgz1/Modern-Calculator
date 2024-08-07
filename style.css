@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #000, #464646);
+    font-family: 'Onest', sans-serif;
+}
+
+.calculator {
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    /* Dividir botones de la calculadora en 4 columnas y cada una ocupa 100 px */
+    grid-template-columns: repeat(4, 100px);
+    /* El tamaño de la fila tiene que ser como mínimo de 120 píxeles y como máximo auto */
+    /* Dividir botones de la calculadora en 5 filas y cada fila ocupa 100 px */
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+
+    & button {
+        cursor: pointer;
+        font-size: 2rem;
+        border: 1px solid rgba(255, 255, 255, .4);
+        background: rgba(255, 255, 255, .75);
+        outline: none;
+
+        &:hover {
+            background: rgba(255, 255, 255, .9);
+        }
+    }
+}
+
+.output {
+    /* La columna comenzará a pintarse en la primera columna (1) de la cuadrícula y se extenderá hasta la última columna (-1) de la misma */
+    grid-column: 1 / -1;
+    background: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    /* Si la operación no cabe en una sola línea, se dividirá */
+    word-wrap: break-word;
+    word-break: break-all;    
+}
+
+/* Clase que permite que una columna ocupe el espacio de 2 */
+.span-column {
+    grid-column: span 2;
+}
+
+.span-row {
+    grid-row: span 2;
+}
+
+/* Operación anterior */
+.output .previous-op {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+/* Operación actual */
+.output .current-op {
+    color: #fff;
+    font-size: 2.5rem;
+}
