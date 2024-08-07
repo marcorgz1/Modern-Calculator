@@ -116,6 +116,16 @@ class Calculator {
             // Formatear la parte entera con separadores de miles
             intDisplay = intDigits.toLocaleString('en', { maximumFractionDigits: 0 })
         }
+
+        // Si la parte decimal no está vacía
+        if(decimalDigits != null) {
+            // Devolver la parte entera junto a la parte decimal
+            return `${intDisplay}.${decimalDigits}`
+        // Por el contrario, si la parte decimal está vacía
+        } else {
+            // Devolver únicamente la parte entera
+            return intDisplay
+        }
     }
     
     // Función para actualizar la salida dependiendo de los valores que se introduzcan
@@ -150,22 +160,22 @@ const calculator = new Calculator(previousOpTextElem, currentOpTextElem)
 
 // Bucle forEach para recorrer cada uno de los botones 
 // que contiene un número de la calculadora
-btnsNum.forEach(btnNum => {
+btnsNum.forEach(button => {
     // Al hacer click en alguno de estos botones
-    btnNum.addEventListener('click', () => {
+    button.addEventListener('click', () => {
         // Llamar a la función "appendNumber" para añadir el contenido del 
         // botón a la salida de la calculadora
-        calculator.appendNumber(btnNum.innerText)
+        calculator.appendNumber(button.innerText)
         // Mostrar la salida de la calculadora actualizada
         calculator.updateDisplayOutput()
     })
 })
 
-btnsOp.forEach(btnOp => {
-    btnOp.addEventListener('click', () => {
+btnsOp.forEach(button => {
+    button.addEventListener('click', () => {
         // Llamar a la función "chooseOperation" para añadir la operación 
         // correspondiente a la salida de la calculadora
-        calculator.chooseOperation(btnOp.innerText)
+        calculator.chooseOperation(button.innerText)
         // Mostrar la salida de la calculadora actualizada
         calculator.updateDisplayOutput()
     })
